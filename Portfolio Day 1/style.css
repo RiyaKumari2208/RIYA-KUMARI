@@ -1,0 +1,46 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing:order-box;
+}
+body{
+    font-family: Arial, sans-serif;
+    background-color:rgb(82, 9, 151)
+}
+nav{
+    display:flex;
+    justify-content: space-between;
+    align-items:center;
+
+    padding: 20px;
+    background-color:white;
+}
+.logo{
+    color:black;
+    font-size: 30px;
+}
+.page{
+    display:block;
+    justify-content: space-between;
+    align-items:center;
+
+    padding: 80px;
+    height:auto;
+}
+.page-text h2{
+    font-size:60px;
+    color: black;
+}
+.page-text h3{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+button{
+    padding:12px 25px;
+    border:none;
+    background-color:wheat;
+    color:white
+    font-size:16px;
+    border-radius:5px;
+    cursor:pointer;
+}
