@@ -1,4 +1,4 @@
-// CAP to find if number is dividible by another number
+// Write a function to find if number is dividible by another number
 
 function isdivisible(a, b) {
   if (a % b == 0) {
