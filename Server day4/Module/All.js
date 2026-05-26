@@ -24,4 +24,4 @@ function isprime(n) {
     console.log("not prime");
   }
 }
-module.exports = { iseven: event, isodd: odd, isprime: prime };
+module.exports = { iseven: iseven, isodd: isodd, isprime: isprime };
