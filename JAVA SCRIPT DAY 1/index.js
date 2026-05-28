@@ -1,4 +1,4 @@
-const age=18
-console.log(age)
-age=23
-console.log(age)
+const age = 18;
+console.log(age);
+let age = 23;
+console.log(age);
