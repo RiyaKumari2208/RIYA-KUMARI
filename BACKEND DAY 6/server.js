@@ -27,7 +27,7 @@ app.get("/news", (req, res) => {
   } else if (category) {
     const finalnews = [];
     for (let i = 0; i < newsdata.length; i++) {
-      if (newsdata[i].category == category) {
+      if (newsdata[i].category.toLowerCase() === category.toLowerCase()) {
         finalnews.push(newsdata[i].news);
       }
     }
