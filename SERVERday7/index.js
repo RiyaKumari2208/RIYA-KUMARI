@@ -1,12 +1,47 @@
 const express = require("express");
-const news = require("./Dataset/news2");
+const news = require("./dataset/news2");
+const prisma = require("./CONFIG/prisma");
+const { searchByTerm, searchByCategory } = require("./module/utils");
 
 const app = express();
 
-const { searchByTerm, searchByCategory } = require("./Module/utils");
+app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Welcome to news website");
+  return res.send(" Welcome to Our News Website");
+});
+
+app.get("/db-check", async (req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    return res.json({ status: "connected" });
+  } catch (error) {
+    return res.status(500).json({ status: "error", message: error.message });
+  }
+});
+
+app.get("/users", async (req, res) => {
+  const users = await prisma.user.findMany({
+    orderBy: { createdAt: "desc" },
+  });
+
+  return res.json(users);
+});
+
+app.post("/users", async (req, res) => {
+  const { name, email, roll_no } = req.body;
+
+  if (!name || !email || !roll_no) {
+    return res
+      .status(400)
+      .json({ message: "name, email, and roll_no are required" });
+  }
+
+  const user = await prisma.user.create({
+    data: { name, email, roll_no },
+  });
+
+  return res.status(201).json(user);
 });
 
 app.get("/news2", (req, res) => {
@@ -28,16 +63,6 @@ app.get("/news2", (req, res) => {
   }
 });
 
-app.get("/news2/:id", (req, res) => {
-  const id = req.params.id;
-  for (let n = 0; n < news.length; n++) {
-    if (news[n].id == id) {
-      return res.json(news[n].news);
-    }
-  }
-  return res.json({ status: "not found" });
-});
-
 app.listen(3000, () => {
-  console.log("Server running on localhost:3000");
+  console.log("Server running on http://localhost:3000");
 });
